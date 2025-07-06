@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python cho Giáo viên - Thay đổi cách dạy học trong 21 ngày</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff08" points="0,0 1000,300 1000,1000 0,700"/><polygon fill="%23ffffff05" points="0,300 1000,0 1000,400 0,700"/></svg>');
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .hero-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            color: #333;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .problem-section {
+            padding: 6rem 2rem;
+            background: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .problem-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .problem-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        .problem-text {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        .solution-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .solution-text h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        
+        .solution-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .solution-features {
+            list-style: none;
+        }
+        
+        .solution-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .solution-features li::before {
+            content: '✅';
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .roadmap-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+        
+        .roadmap-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .roadmap-intro h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .week-container {
+            margin-bottom: 4rem;
+        }
+        
+        .week-header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(255, 154, 158, 0.2);
+        }
+        
+        .week-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .week-description {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .days-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .days-timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+        }
+        
+        .day-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-left: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .day-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .day-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 2rem;
+            width: 1rem;
+            height: 1rem;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+        
+        .day-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .day-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+        
+        .day-goal {
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+        
+        .day-tech {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            display: inline-block;
+        }
+        
+        .benefits-section {
+            padding: 6rem 2rem;
+            background: #f8fafc;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-content h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        .price-highlight {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .price-original {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-sale {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-note {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .urgency-text {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            color: #333;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            text-align: center;
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .solution-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .days-timeline {
+                padding-left: 1rem;
+            }
+            
+            .day-item {
+                margin-left: 1rem;
+            }
+            
+            .day-item::before {
+                left: -1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-badge">
+                🚀 Dành riêng cho Giáo viên Việt Nam
+            </div>
+            <h1 class="hero-title">
+                Thay Đổi Cách Dạy Học<br>
+                <span style="background: linear-gradient(45deg, #ff6b6b, #ffd93d); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    Chỉ Trong 21 Ngày
+                </span>
+            </h1>
+            <p class="hero-subtitle">
+                Python cho Giáo viên - Từ Zero đến Hero
+            </p>
+            <p class="hero-description">
+                Khóa học Python đầu tiên tại Việt Nam được thiết kế riêng cho giáo viên. 
+                Tự động hóa công việc giảng dạy, tạo đề thi, quản lý điểm số và xây dựng 
+                các công cụ giáo dục chuyên nghiệp.
+            </p>
+            <div class="cta-buttons">
+                <a href="#roadmap" class="btn-primary">
+                    🎯 Xem Lộ Trình Chi Tiết
+                </a>
+                <a href="#benefits" class="btn-secondary">
+                    💡 Tại Sao Chọn Chúng Tôi?
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div style="font-size: 2rem;">⬇️</div>
+            <div>Khám phá thêm</div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Bạn Có Đang Gặp Những Khó Khăn Này?</h2>
+                <p class="section-subtitle">
+                    Chúng tôi hiểu rõ những thách thức mà giáo viên Việt Nam đang đối mặt
+                </p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">⏰</div>
+                    <h3 class="problem-title">Thiếu Thời Gian</h3>
+                    <p class="problem-text">
+                        Mất hàng giờ để tạo đề thi, chấm bài, nhập điểm và làm báo cáo. 
+                        Công việc lặp đi lặp lại khiến bạn kiệt sức.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">📝</div>
+                    <h3 class="problem-title">Công Việc Thủ Công</h3>
+                    <p class="problem-text">
+                        Vẫn phải làm tất cả bằng tay: tạo đề, tính điểm, làm thống kê. 
+                        Dễ sai sót và không hiệu quả.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💻</div>
+                    <h3 class="problem-title">Kỹ Năng Công Nghệ</h3>
+                    <p class="problem-text">
+                        Muốn ứng dụng công nghệ vào giảng dạy nhưng không biết bắt đầu từ đâu. 
+                        Các khóa học lập trình thông thường không phù hợp.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h2>Python - Giải Pháp Hoàn Hảo Cho Giáo Viên</h2>
+                    <p>
+                        Không phải học lập trình phức tạp. Chỉ cần 21 ngày để thành thạo 
+                        những công cụ Python thiết thực nhất cho công việc giảng dạy.
+                    </p>
+                    <ul class="solution-features">
+                        <li>Tự động tạo đề thi với hàng ngàn biến thể</li>
+                        <li>Quản lý và phân tích điểm số tự động</li>
+                        <li>Tạo bài giảng tương tác và đồ thị</li>
+                        <li>Xuất báo cáo Word/Excel chuyên nghiệp</li>
+                        <li>Xây dựng ngân hàng câu hỏi thông minh</li>
+                        <li>Tiết kiệm 70% thời gian công việc hành chính</li>
+                    </ul>
+                </div>
+                <div class="solution-image">
+                    <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 3rem; border-radius: 20px; text-align: center;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">🎓</div>
+                        <h3 style="font-size: 2rem; margin-bottom: 1rem;">Được Thiết Kế Riêng Cho Giáo Viên</h3>
+                        <p style="font-size: 1.2rem; opacity: 0.9;">
+                            Mỗi bài học đều gắn liền với tình huống thực tế trong lớp học. 
+                            Bạn sẽ làm được ngay những gì học được.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="roadmap-section">
+        <div class="container">
+            <div class="roadmap-intro">
+                <h2>Lộ Trình Chi Tiết 21 Ngày</h2>
+                <p style="font-size: 1.2rem; color: #64748b; max-width: 800px; margin: 0 auto;">
+                    Từng ngày một bước, từng bước một kỹ năng. Sau 21 ngày, bạn sẽ trở thành 
+                    giáo viên "công nghệ" được học sinh và đồng nghiệp ngưỡng mộ.
+                </p>
+            </div>
+
+            <!-- Week 1 -->
+            <div class="week-container">
+                <div class="week-header" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                    <h3 class="week-title">🗓️ TUẦN 1: TỰ ĐỘNG HÓA CÁC CÔNG VIỆC CƠ BẢN</h3>
+                    <p class="week-description">Từ máy tính Vật lí đến hàm số tái sử dụng</p>
+                </div>
+                <div class="days-timeline">
+                    <div class="day-item">
+                        <div class="day-number">01</div>
+                        <h4 class="day-title">⚡ Máy tính Vật lí đầu tiên</h4>
+                        <p class="day-goal">Tính toán công thức đơn lẻ (s = v*t) nhanh chóng và chính xác</p>
+                        <span class="day-tech">🔧 Biến số, print(), input()</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">02</div>
+                        <h4 class="day-title">🎲 Sức mạnh của sự Ngẫu nhiên</h4>
+                        <p class="day-goal">Tạo 5 bộ số liệu (F, m) ngẫu nhiên cho Định luật II Newton</p>
+                        <span class="day-tech">🔧 Thư viện random</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">03</div>
+                        <h4 class="day-title">📝 Tạo đề bài tự luận hoàn chỉnh</h4>
+                        <p class="day-goal">Ghép nối số liệu ngẫu nhiên thành câu văn đề bài hoàn chỉnh</p>
+                        <span class="day-tech">🔧 String, f-string</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">04</div>
+                        <h4 class="day-title">🔄 Lặp lại công việc không nhàm chán</h4>
+                        <p class="day-goal">Tạo 10 đề bài tính nhiệt lượng trong một lần chạy duy nhất</p>
+                        <span class="day-tech">🔧 Vòng lặp for</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">05</div>
+                        <h4 class="day-title">🤖 Khi máy tính biết "Ra quyết định"</h4>
+                        <p class="day-goal">Kiểm tra đòn bẩy có cân bằng hay không một cách tự động</p>
+                        <span class="day-tech">🔧 Câu lệnh if...else</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">06</div>
+                        <h4 class="day-title">📦 Đóng gói code thành "Hàm"</h4>
+                        <p class="day-goal">Tạo hàm tính động năng và thế năng có thể tái sử dụng</p>
+                        <span class="day-tech">🔧 Function, parameter, return</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">07</div>
+                        <h4 class="day-title">🧮 Sức mạnh Thư viện Toán học</h4>
+                        <p class="day-goal">Tính chu kỳ con lắc đơn T = 2π√(l/g) chính xác</p>
+                        <span class="day-tech">🔧 Thư viện math</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="week-container">
+                <div class="week-header" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                    <h3 class="week-title">🗓️ TUẦN 2: TỔ CHỨC DỮ LIỆU VÀ NGÂN HÀNG CÂU HỎI</h3>
+                    <p class="week-description">Từ danh sách đến file I/O chuyên nghiệp</p>
+                </div>
+                <div class="days-timeline">
+                    <div class="day-item">
+                        <div class="day-number">08</div>
+                        <h4 class="day-title">📋 Quản lý một danh sách</h4>
+                        <p class="day-goal">Tạo danh sách 5 câu hỏi ôn tập chương Động học có tổ chức</p>
+                        <span class="day-tech">🔧 Kiểu dữ liệu List</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">09</div>
+                        <h4 class="day-title">🔍 Duyệt qua từng mục trong danh sách</h4>
+                        <p class="day-goal">In câu hỏi kèm số thứ tự "Câu 1:", "Câu 2:" tự động</p>
+                        <span class="day-tech">🔧 Vòng lặp for với List</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">10</div>
+                        <h4 class="day-title">🎯 Lọc dữ liệu theo điều kiện</h4>
+                        <p class="day-goal">Đếm học sinh đạt điểm trên 8 trong danh sách điểm số</p>
+                        <span class="day-tech">🔧 Kết hợp for và if</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">11</div>
+                        <h4 class="day-title">🔀 Trộn một danh sách</h4>
+                        <p class="day-goal">Xáo trộn thứ tự câu hỏi để tạo mã đề khác nhau ngẫu nhiên</p>
+                        <span class="day-tech">🔧 random.shuffle()</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">12</div>
+                        <h4 class="day-title">🗃️ Cấu trúc Dữ liệu Flashcard</h4>
+                        <p class="day-goal">Lưu trữ câu trắc nghiệm với câu hỏi, đáp án, đáp án đúng</p>
+                        <span class="day-tech">🔧 Dictionary</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">13</div>
+                        <h4 class="day-title">📂 Đọc dữ liệu từ File Text</h4>
+                        <p class="day-goal">Đọc file cauhoi.txt vào List để tái sử dụng lâu dài</p>
+                        <span class="day-tech">🔧 Đọc file với open()</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">14</div>
+                        <h4 class="day-title">💾 Ghi kết quả ra File Text</h4>
+                        <p class="day-goal">Lưu đề thi 5 câu ngẫu nhiên vào file riêng biệt</p>
+                        <span class="day-tech">🔧 Ghi file với write()</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="week-container">
+                <div class="week-header" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                    <h3 class="week-title">🗓️ TUẦN 3: HÉ LỘ "SIÊU NĂNG LỰC"</h3>
+                    <p class="week-description">Từ xử lý lỗi đến preview khóa nâng cao</p>
+                </div>
+                <div class="days-timeline">
+                    <div class="day-item">
+                        <div class="day-number">15</div>
+                        <h4 class="day-title">🛡️ Bắt lỗi chương trình</h4>
+                        <p class="day-goal">Máy tính không crash khi nhập chữ thay vì số</p>
+                        <span class="day-tech">🔧 try...except</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">16</div>
+                        <h4 class="day-title">🏗️ Lập trình Hướng đối tượng</h4>
+                        <p class="day-goal">Tạo Class ConLacDon với thuộc tính và phương thức chuyên nghiệp</p>
+                        <span class="day-tech">🔧 class, __init__, self</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">17</div>
+                        <h4 class="day-title">📄 Xuất file Word chuyên nghiệp</h4>
+                        <p class="day-goal">Định dạng đề thi với in đậm, căn lề, chèn bảng đẹp mắt</p>
+                        <span class="day-tech">🚀 python-docx (Demo)</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">18</div>
+                        <h4 class="day-title">📊 Vẽ đồ thị Vật lí</h4>
+                        <p class="day-goal">Vẽ đồ thị x-t của dao động điều hòa ngẫu nhiên đẹp mắt</p>
+                        <span class="day-tech">🚀 matplotlib (Demo)</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">19</div>
+                        <h4 class="day-title">📈 Xử lý bảng tính Excel</h4>
+                        <p class="day-goal">Đọc điểm, tự động xếp loại và tô màu Excel chuyên nghiệp</p>
+                        <span class="day-tech">🚀 pandas, openpyxl (Demo)</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">20</div>
+                        <h4 class="day-title">🎬 Tạo hoạt hình giảng dạy</h4>
+                        <p class="day-goal">Mô phỏng chuyển động ném xiên hoặc sóng dừng sinh động</p>
+                        <span class="day-tech">🚀 manim (Demo)</span>
+                    </div>
+                    <div class="day-item">
+                        <div class="day-number">21</div>
+                        <h4 class="day-title">🎓 Tổng kết & Khóa Nâng cao</h4>
+                        <p class="day-goal">Tổng kết công cụ và giới thiệu khóa học nâng cao đầy đủ</p>
+                        <span class="day-tech">🎯 Ôn tập & Upgrade</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tại Sao 10,000+ Giáo Viên Đã Chọn Chúng Tôi?</h2>
+                <p class="section-subtitle">
+                    Những lợi ích thiết thực mà bạn sẽ nhận được ngay sau khóa học
+                </p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3 class="benefit-title">Tiết Kiệm 70% Thời Gian</h3>
+                    <p>Tự động hóa tạo đề, chấm bài, nhập điểm. Dành thời gian cho việc quan trọng hơn.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">100% Thực Tế</h3>
+                    <p>Mỗi bài học đều gắn với tình huống thực tế trong lớp. Học xong là áp dụng được ngay.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">👨‍🏫</div>
+                    <h3 class="benefit-title">Được Thiết Kế Cho Giáo Viên</h3>
+                    <p>Không phải học lập trình khô khan. Chỉ học những gì cần thiết cho công việc giảng dạy.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3 class="benefit-title">Nâng Tầm Chuyên Môn</h3>
+                    <p>Trở thành giáo viên "công nghệ" được học sinh và đồng nghiệp ngưỡng mộ.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3 class="benefit-title">Tăng Thu Nhập</h3>
+                    <p>Mở ra cơ hội dạy thêm, làm dự án hoặc tạo content giáo dục trực tuyến.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎓</div>
+                    <h3 class="benefit-title">Hỗ Trợ Trọn Đời</h3>
+                    <p>Cộng đồng 10,000+ giáo viên và team hỗ trợ 24/7 giải đáp mọi thắc mắc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <div class="urgency-text">
+                    🔥 Ưu đãi đặc biệt chỉ còn 3 ngày!
+                </div>
+                <h2>Đăng Ký Ngay Hôm Nay!</h2>
+                <p>
+                    Hơn 500 giáo viên đã đăng ký trong tháng này. 
+                    Đừng để mình tụt lại phía sau!
+                </p>
+                
+                <div class="price-highlight">
+                    <div class="price-original">Giá gốc: 2,990,000đ</div>
+                    <div class="price-sale">Chỉ còn: 990,000đ</div>
+                    <div class="price-note">Tiết kiệm 2,000,000đ - Ưu đãi có thời hạn</div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <a href="#register" class="btn-primary" style="font-size: 1.3rem; padding: 1.5rem 4rem; margin-right: 1rem;">
+                        🚀 ĐĂNG KÝ NGAY
+                    </a>
+                    <a href="#contact" class="btn-secondary" style="font-size: 1.1rem; padding: 1.2rem 2rem;">
+                        📞 Tư Vấn Miễn Phí
+                    </a>
+                </div>
+
+                <div style="margin-top: 2rem; font-size: 1rem; opacity: 0.8;">
+                    ✅ Cam kết hoàn tiền 100% nếu không hài lòng<br>
+                    ✅ Truy cập trọn đời + cập nhật miễn phí<br>
+                    ✅ Chứng chỉ hoàn thành có giá trị
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3 style="margin-bottom: 2rem; font-size: 2rem;">Liên Hệ Ngay Để Được Tư Vấn!</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <h4>Hotline</h4>
+                        <p>0123.456.789<br>(8h - 22h hằng ngày)</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <h4>Email</h4>
+                        <p>support@pythonteacher.vn<br>info@pythonteacher.vn</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <h4>Facebook</h4>
+                        <p>fb.com/PythonChoGiaoVien<br>Nhắn tin để được tư vấn</p>
+                    </div>
+                </div>
+                <div style="border-top: 1px solid #334155; padding-top: 2rem; margin-top: 2rem;">
+                    <p>&copy; 2025 Python cho Giáo viên. Bản quyền thuộc về chúng tôi.</p>
+                    <p style="margin-top: 0.5rem; opacity: 0.7;">
+                        Khóa học được thiết kế và phát triển tại Việt Nam, dành riêng cho giáo viên Việt Nam.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.problem-card, .benefit-card, .day-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add click tracking for CTA buttons
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Add analytics tracking here
+                console.log('CTA clicked:', this.textContent);
+            });
+        });
+    </script>
+</body>
+</html>

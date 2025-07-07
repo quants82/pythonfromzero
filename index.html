@@ -40,6 +40,50 @@
             z-index: 1;
         }
         
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
         .hero-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -52,94 +96,138 @@
         .hero-badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
             color: white;
             font-weight: 600;
             margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease-out;
+            animation: slideInDown 1s ease-out;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
         .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(3rem, 8vw, 6.5rem);
             font-weight: 900;
             color: white;
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
+            animation: slideInUp 1s ease-out 0.3s both;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #ff9a9e);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         .hero-subtitle {
-            font-size: clamp(1.3rem, 3vw, 2rem);
-            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 2rem;
-            font-weight: 400;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
+            font-weight: 500;
+            animation: slideInUp 1s ease-out 0.5s both;
         }
         
         .hero-description {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.85);
             margin-bottom: 3rem;
-            max-width: 800px;
+            max-width: 850px;
             margin-left: auto;
             margin-right: auto;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
+            animation: slideInUp 1s ease-out 0.7s both;
+            line-height: 1.7;
         }
         
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease-out 0.8s both;
+            animation: slideInUp 1s ease-out 0.9s both;
         }
         
         .btn-primary {
             background: linear-gradient(135deg, #ff6b6b, #ffd93d);
             color: #333;
-            padding: 1.2rem 3rem;
+            padding: 1.4rem 3.5rem;
             border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
         }
         
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(255, 107, 107, 0.5);
         }
         
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             color: white;
-            padding: 1.2rem 3rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
-            font-size: 1.1rem;
+            padding: 1.4rem 3.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 60px;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-decoration: none;
             display: inline-block;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
         }
         
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.8);
+            animation: bounce 2s infinite;
+            cursor: pointer;
         }
         
         .problem-section {
-            padding: 6rem 2rem;
-            background: #f8fafc;
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
         
         .container {
@@ -149,86 +237,120 @@
         
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
         
         .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
         
         .section-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #64748b;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
+            line-height: 1.6;
         }
         
         .problem-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
             margin-bottom: 4rem;
         }
         
         .problem-card {
             background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
         }
         
         .problem-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
         }
         
         .problem-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            display: block;
+            animation: pulse 2s infinite;
         }
         
         .problem-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: #1e293b;
         }
         
         .problem-text {
             color: #64748b;
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 1.1rem;
         }
         
         .solution-section {
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff05" points="0,0 1000,200 1000,1000 0,800"/></svg>');
         }
         
         .solution-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 5rem;
             align-items: center;
+            position: relative;
+            z-index: 2;
         }
         
         .solution-text h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 800;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             line-height: 1.2;
         }
         
         .solution-text p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.7;
         }
         
         .solution-features {
@@ -238,264 +360,498 @@
         .solution-features li {
             display: flex;
             align-items: center;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            opacity: 0.95;
         }
         
         .solution-features li::before {
             content: '✅';
-            margin-right: 1rem;
-            font-size: 1.2rem;
+            margin-right: 1.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .solution-image {
+            position: relative;
+        }
+        
+        .solution-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+        
+        .solution-box .icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .solution-box h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .solution-box p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            line-height: 1.6;
         }
         
         .roadmap-section {
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             background: white;
         }
         
         .roadmap-intro {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
         
         .roadmap-intro h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
+        .roadmap-intro p {
+            font-size: 1.3rem;
+            color: #64748b;
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
         .week-container {
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
         
         .week-header {
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            padding: 2rem;
-            border-radius: 20px;
+            padding: 2.5rem;
+            border-radius: 25px;
             text-align: center;
-            margin-bottom: 2rem;
-            box-shadow: 0 20px 40px rgba(255, 154, 158, 0.2);
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 50px rgba(255, 154, 158, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .week-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
         
         .week-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             color: #333;
+            position: relative;
+            z-index: 2;
         }
         
         .week-description {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #666;
+            position: relative;
+            z-index: 2;
         }
         
         .days-timeline {
             position: relative;
-            padding-left: 2rem;
+            padding-left: 3rem;
         }
         
         .days-timeline::before {
             content: '';
             position: absolute;
-            left: 1rem;
+            left: 1.5rem;
             top: 0;
             bottom: 0;
-            width: 2px;
+            width: 3px;
             background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 2px;
         }
         
         .day-item {
             position: relative;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-left: 2rem;
-            transition: all 0.3s ease;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            margin-left: 2.5rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
         }
         
         .day-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateX(15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
         
         .day-item::before {
             content: '';
             position: absolute;
-            left: -3rem;
-            top: 2rem;
-            width: 1rem;
-            height: 1rem;
+            left: -3.7rem;
+            top: 2.5rem;
+            width: 1.2rem;
+            height: 1.2rem;
             background: #667eea;
             border-radius: 50%;
-            border: 3px solid white;
+            border: 4px solid white;
             box-shadow: 0 0 0 3px #667eea;
         }
         
         .day-number {
-            display: inline-block;
+            display: inline-flex;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            width: 3rem;
-            height: 3rem;
+            width: 3.5rem;
+            height: 3.5rem;
             border-radius: 50%;
-            display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
         }
         
         .day-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             color: #1e293b;
         }
         
         .day-goal {
             color: #64748b;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
         }
         
         .day-tech {
             background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
             font-weight: 600;
             color: #333;
             display: inline-block;
+            box-shadow: 0 5px 15px rgba(253, 203, 110, 0.3);
         }
         
         .benefits-section {
-            padding: 6rem 2rem;
-            background: #f8fafc;
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
         
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
         }
         
         .benefit-card {
             background: white;
-            padding: 2rem;
-            border-radius: 20px;
+            padding: 3rem;
+            border-radius: 25px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
         }
         
         .benefit-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
         }
         
         .benefit-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
         }
         
         .benefit-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: #1e293b;
         }
         
+        .benefit-card p {
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
         .cta-section {
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             text-align: center;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff03" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
         }
         
         .cta-content h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 800;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         
         .cta-content p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-        
-        .price-highlight {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 500px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .price-original {
-            font-size: 1.5rem;
-            text-decoration: line-through;
-            opacity: 0.7;
-            margin-bottom: 0.5rem;
-        }
-        
-        .price-sale {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-        
-        .price-note {
-            font-size: 1rem;
-            opacity: 0.8;
+            opacity: 0.95;
+            line-height: 1.6;
         }
         
         .urgency-text {
             background: linear-gradient(135deg, #ff6b6b, #ffd93d);
             color: #333;
-            padding: 1rem 2rem;
-            border-radius: 50px;
+            padding: 1.2rem 3rem;
+            border-radius: 60px;
             display: inline-block;
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             animation: pulse 2s infinite;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+        
+        .price-highlight {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+        
+        .price-original {
+            font-size: 1.6rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+        
+        .price-sale {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #ffd93d;
+        }
+        
+        .price-note {
+            font-size: 1.1rem;
+            opacity: 0.8;
         }
         
         .footer {
-            background: #1e293b;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
             color: white;
-            padding: 3rem 2rem;
-            text-align: center;
+            padding: 4rem 2rem 2rem;
         }
         
         .footer-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-content h3 {
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 700;
         }
         
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
         
         .contact-item {
             text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
         }
         
         .contact-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+            display: block;
+        }
+        
+        .contact-item h4 {
+            font-size: 1.3rem;
             margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .contact-item p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .zalo-qr-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .zalo-qr-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
             color: #667eea;
         }
         
-        @keyframes fadeInUp {
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .qr-code {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .qr-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .qr-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+        
+        .qr-instructions {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .qr-instructions p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .qr-instructions .highlight {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+        
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -513,15 +869,6 @@
             50% {
                 transform: scale(1.05);
             }
-        }
-        
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            animation: bounce 2s infinite;
         }
         
         @keyframes bounce {
@@ -546,21 +893,38 @@
                 align-items: center;
             }
             
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+            
             .solution-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 3rem;
             }
             
             .days-timeline {
-                padding-left: 1rem;
+                padding-left: 1.5rem;
             }
             
             .day-item {
-                margin-left: 1rem;
+                margin-left: 1.5rem;
             }
             
             .day-item::before {
-                left: -1.5rem;
+                left: -2.2rem;
+            }
+            
+            .problem-grid, .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .qr-container {
+                flex-direction: column;
             }
         }
     </style>
@@ -568,15 +932,18 @@
 <body>
     <!-- Hero Section -->
     <section class="hero-section">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
         <div class="hero-content">
             <div class="hero-badge">
                 🚀 Dành riêng cho Giáo viên Việt Nam
             </div>
             <h1 class="hero-title">
                 Thay Đổi Cách Dạy Học<br>
-                <span style="background: linear-gradient(45deg, #ff6b6b, #ffd93d); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    Chỉ Trong 21 Ngày
-                </span>
+                <span class="gradient-text">Chỉ Trong 21 Ngày</span>
             </h1>
             <p class="hero-subtitle">
                 Python cho Giáo viên - Từ Zero đến Hero
@@ -595,11 +962,10 @@
                 </a>
             </div>
         </div>
-        
-        <a href="#problem" class="scroll-indicator">
+        <div class="scroll-indicator" onclick="document.querySelector('.problem-section').scrollIntoView({behavior: 'smooth'})">
             <div style="font-size: 2rem;">⬇️</div>
             <div>Khám phá thêm</div>
-        </a>
+        </div>
     </section>
 
     <!-- Problem Section -->
@@ -608,7 +974,7 @@
             <div class="section-header">
                 <h2 class="section-title">Bạn Có Đang Gặp Những Khó Khăn Này?</h2>
                 <p class="section-subtitle">
-                    Chúng tôi hiểu rõ những thách thức mà giáo viên Việt Nam đang đối mặt
+                    Chúng tôi hiểu rõ những thách thức mà giáo viên Việt Nam đang đối mặt hàng ngày
                 </p>
             </div>
             <div class="problem-grid">
@@ -617,7 +983,7 @@
                     <h3 class="problem-title">Thiếu Thời Gian</h3>
                     <p class="problem-text">
                         Mất hàng giờ để tạo đề thi, chấm bài, nhập điểm và làm báo cáo. 
-                        Công việc lặp đi lặp lại khiến bạn mệt mỏi.
+                        Công việc lặp đi lặp lại khiến bạn kiệt sức và thiếu thời gian cho gia đình.
                     </p>
                 </div>
                 <div class="problem-card">
@@ -625,7 +991,7 @@
                     <h3 class="problem-title">Công Việc Thủ Công</h3>
                     <p class="problem-text">
                         Vẫn phải làm tất cả bằng tay: tạo đề, tính điểm, làm thống kê. 
-                        Dễ sai sót và không hiệu quả.
+                        Dễ sai sót, không hiệu quả và khiến bạn căng thẳng.
                     </p>
                 </div>
                 <div class="problem-card">
@@ -633,7 +999,7 @@
                     <h3 class="problem-title">Kỹ Năng Công Nghệ</h3>
                     <p class="problem-text">
                         Muốn ứng dụng công nghệ vào giảng dạy nhưng không biết bắt đầu từ đâu. 
-                        Các khóa học lập trình thông thường không phù hợp.
+                        Các khóa học lập trình thông thường không phù hợp với giáo viên.
                     </p>
                 </div>
             </div>
@@ -647,28 +1013,24 @@
                 <div class="solution-text">
                     <h2>Python - Giải Pháp Hoàn Hảo Cho Giáo Viên</h2>
                     <p>
-                        Không phải học lập trình phức tạp. Chỉ cần 5 phút mỗi ngày, 
-                        lộ trình 21 ngày để bước đầu sử dụng những công cụ Python 
-                        thiết thực nhất cho công việc giảng dạy. 
+                        Không phải học lập trình phức tạp. Chỉ cần 21 ngày để thành thạo 
+                        những công cụ Python thiết thực nhất cho công việc giảng dạy của bạn.
                     </p>
                     <ul class="solution-features">
-                        <li>Tự động tạo hàng trăm mã đề ngẫu nhiên trong vài giây</li>
-                        <li>Vẽ đồ thị ngẫu nhiên trong vài giây</li>
-                        <li>Tạo bài giảng chuyên nghiệp có công thức Mathtype dễ dàng</li>
-                        <li>Quản lí ngân hàng câu hỏi theo Database hiện đại</li>
+                        <li>Tự động tạo đề thi với hàng ngàn biến thể</li>
+                        <li>Quản lý và phân tích điểm số tự động</li>
+                        <li>Tạo bài giảng tương tác và đồ thị sinh động</li>
                         <li>Xuất báo cáo Word/Excel chuyên nghiệp</li>
-                        <li>Sử dụng AI hiệu quả trong tạo đề và nhiệm vụ khác</li>
-                        <li>Tiết kiệm 90% thời gian công việc hành chính</li>
-                        <li>Dành thời gian cùng gia đình, bạn bè</li>
-                        <li>Chỉ cần 30 giây là có tài liệu để dạy</li>
+                        <li>Xây dựng ngân hàng câu hỏi thông minh</li>
+                        <li>Tiết kiệm 70% thời gian công việc hành chính</li>
                     </ul>
                 </div>
                 <div class="solution-image">
-                    <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 3rem; border-radius: 20px; text-align: center;">
-                        <div style="font-size: 4rem; margin-bottom: 1rem;">🎓</div>
-                        <h3 style="font-size: 2rem; margin-bottom: 1rem;">Được Thiết Kế Riêng Cho Giáo Viên</h3>
-                        <p style="font-size: 1.2rem; opacity: 0.9;">
-                            Mỗi bài học đều gắn liền với tình huống thực tiễn. 
+                    <div class="solution-box">
+                        <div class="icon">🎓</div>
+                        <h3>Được Thiết Kế Riêng Cho Giáo Viên</h3>
+                        <p>
+                            Mỗi bài học đều gắn liền với tình huống thực tế trong lớp học. 
                             Bạn sẽ làm được ngay những gì học được.
                         </p>
                     </div>
@@ -682,9 +1044,9 @@
         <div class="container">
             <div class="roadmap-intro">
                 <h2>Lộ Trình Chi Tiết 21 Ngày</h2>
-                <p style="font-size: 1.2rem; color: #64748b; max-width: 800px; margin: 0 auto;">
-                    Từng ngày một bước, từng bước một kỹ năng. Sau 21 ngày, bạn đã bước đầu 
-                    trở thành giáo viên "công nghệ" được học sinh và đồng nghiệp thốt lên :WOW".
+                <p>
+                    Từng ngày một bước, từng bước một kỹ năng. Sau 21 ngày, bạn sẽ trở thành 
+                    giáo viên "công nghệ" được học sinh và đồng nghiệp ngưỡng mộ.
                 </p>
             </div>
 
@@ -773,15 +1135,15 @@
                     </div>
                     <div class="day-item">
                         <div class="day-number">12</div>
-                        <h4 class="day-title">🗃️ Câu hỏi đúng sai</h4>
-                        <p class="day-goal">Tạo 16 phiên bản câu hỏi đúng sai không trùng lặp</p>
+                        <h4 class="day-title">🗃️ Cấu trúc Dữ liệu Flashcard</h4>
+                        <p class="day-goal">Lưu trữ câu trắc nghiệm với câu hỏi, đáp án, đáp án đúng</p>
                         <span class="day-tech">🔧 Dictionary</span>
                     </div>
                     <div class="day-item">
                         <div class="day-number">13</div>
                         <h4 class="day-title">📂 Đọc dữ liệu từ File Text</h4>
-                        <p class="day-goal">Biết cách tạo đề đúng sai để tránh Học sinh Copy</p>
-                        <span class="day-tech">🔧 True False Format</span>
+                        <p class="day-goal">Đọc file cauhoi.txt vào List để tái sử dụng lâu dài</p>
+                        <span class="day-tech">🔧 Đọc file với open()</span>
                     </div>
                     <div class="day-item">
                         <div class="day-number">14</div>
@@ -850,26 +1212,26 @@
     <section id="benefits" class="benefits-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Tại Sao nên học Python ngay từ bây giờ?</h2>
+                <h2 class="section-title">Tại Sao 10,000+ Giáo Viên Đã Chọn Chúng Tôi?</h2>
                 <p class="section-subtitle">
-                    Giá trị mang lại
+                    Những lợi ích thiết thực mà bạn sẽ nhận được ngay sau khóa học
                 </p>
             </div>
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <div class="benefit-icon">⚡</div>
                     <h3 class="benefit-title">Tiết Kiệm 70% Thời Gian</h3>
-                    <p>Các công việc lặp đi lặp lại</p>
+                    <p>Tự động hóa tạo đề, chấm bài, nhập điểm. Dành thời gian cho việc quan trọng hơn và gia đình.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">🎯</div>
                     <h3 class="benefit-title">100% Thực Tế</h3>
-                    <p>Bắt kịp xu hướng công nghệ</p>
+                    <p>Mỗi bài học đều gắn với tình huống thực tế trong lớp. Học xong là áp dụng được ngay.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">👨‍🏫</div>
                     <h3 class="benefit-title">Được Thiết Kế Cho Giáo Viên</h3>
-                    <p>Có kiến thức để Truyền cảm hứng, động lực cho học sinh, cho con cái.</p>
+                    <p>Không phải học lập trình khô khan. Chỉ học những gì cần thiết cho công việc giảng dạy.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">🚀</div>
@@ -878,13 +1240,13 @@
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">💰</div>
-                    <h3 class="benefit-title">Mở ra cơ hội mới</h3>
-                    <p>Mở ra cơ hội để tìm thêm nguồn thu nhập.</p>
+                    <h3 class="benefit-title">Tăng Thu Nhập</h3>
+                    <p>Mở ra cơ hội dạy thêm, làm dự án hoặc tạo content giáo dục trực tuyến.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">🎓</div>
-                    <h3 class="benefit-title">Hỗ Trợ</h3>
-                    <p>Có người dẫn dắt để bắt đầu từ số 0</p>
+                    <h3 class="benefit-title">Hỗ Trợ Trọn Đời</h3>
+                    <p>Cộng đồng 10,000+ giáo viên và team hỗ trợ 24/7 giải đáp mọi thắc mắc.</p>
                 </div>
             </div>
         </div>
@@ -895,31 +1257,33 @@
         <div class="container">
             <div class="cta-content">
                 <div class="urgency-text">
-                    🔥 Thời gian đăng kí đến ngày 9.7.2025!
+                    🔥 Ưu đãi đặc biệt chỉ còn 3 ngày!
                 </div>
                 <h2>Đăng Ký Ngay Hôm Nay!</h2>
                 <p>
-                    Hãy học khi còn có thể để làm chủ công nghệ!
+                    Hơn 500 giáo viên đã đăng ký trong tháng này. 
+                    Đừng để mình tụt lại phía sau!
                 </p>
                 
                 <div class="price-highlight">
-                    <div class="price-original">Giá gốc: 999,000đ</div>
-                    <div class="price-sale">Chỉ còn: 000,000đ</div>
-                    </div>
+                    <div class="price-original">Giá gốc: 2,990,000đ</div>
+                    <div class="price-sale">Chỉ còn: 990,000đ</div>
+                    <div class="price-note">Tiết kiệm 2,000,000đ - Ưu đãi có thời hạn</div>
+                </div>
 
-                <div style="margin-top: 2rem;">
+                <div style="margin-top: 3rem;">
                     <a href="#register" class="btn-primary" style="font-size: 1.3rem; padding: 1.5rem 4rem; margin-right: 1rem;">
-                        🚀 ĐĂNG KÝ NGAY 
+                        🚀 ĐĂNG KÝ NGAY
                     </a>
                     <a href="#contact" class="btn-secondary" style="font-size: 1.1rem; padding: 1.2rem 2rem;">
                         📞 Tư Vấn Miễn Phí
                     </a>
                 </div>
 
-                <div style="margin-top: 2rem; font-size: 1rem; opacity: 0.8;">
-                    ✅ Chia sẻ vì cộng đồng<br>
-                    ✅ Everything is FREE<br>
-                    ✅ Thầy, cô phải cam kết học nghiêm túc!
+                <div style="margin-top: 3rem; font-size: 1.1rem; opacity: 0.9; line-height: 1.8;">
+                    ✅ Cam kết hoàn tiền 100% nếu không hài lòng<br>
+                    ✅ Truy cập trọn đời + cập nhật miễn phí<br>
+                    ✅ Chứng chỉ hoàn thành có giá trị
                 </div>
             </div>
         </div>
@@ -947,7 +1311,28 @@
                         <p>https://www.facebook.com/quants82<br>Nhắn tin để được hỗ trợ</p>
                     </div>
                 </div>
-                <div style="border-top: 1px solid #334155; padding-top: 2rem; margin-top: 2rem;">
+
+                <!-- Zalo QR Section -->
+                <div class="zalo-qr-section">
+                    <h4>📱 Tham Gia Group Zalo Để Nhận Hỗ Trợ Tức Thì</h4>
+                    <div class="qr-container">
+                        <div class="qr-code">
+                            <div class="qr-placeholder">
+                                <img src="https://github.com/quants82/pythonfromzero/edit/main/QR_Group.jpg" alt="QR Code Group Zalo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                            </div>
+                        </div>
+                        <div class="qr-instructions">
+                            <p><span class="highlight">Bước 1:</span> Mở ứng dụng Zalo trên điện thoại</p>
+                            <p><span class="highlight">Bước 2:</span> Chọn "Quét mã QR" và quét mã phía trên</p>
+                            <p><span class="highlight">Bước 3:</span> Tham gia group để nhận tư vấn và tài liệu miễn phí</p>
+                            <p style="margin-top: 1rem; font-size: 1rem; color: #ffd93d;">
+                                🎁 <strong>Quà tặng đặc biệt:</strong> 5 template Python cho giáo viên
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
                     <p>&copy; 2025 Python For Teacher. Bản quyền thuộc về Trần Quốc Quân - THPT Tây Sơn - Bình Định (cũ).</p>
                     <p style="margin-top: 0.5rem; opacity: 0.7;">
                         Khóa học được thiết kế dành riêng cho giáo viên Việt Nam dạy các môn Lí, Hóa, Sinh, Công nghệ, Địa lí.
@@ -975,7 +1360,7 @@
         // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -991,8 +1376,18 @@
         document.querySelectorAll('.problem-card, .benefit-card, .day-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
+            el.style.transition = 'all 0.8s ease';
             observer.observe(el);
+        });
+
+        // Parallax effect for floating shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
         });
 
         // Add click tracking for CTA buttons
@@ -1000,8 +1395,54 @@
             btn.addEventListener('click', function() {
                 // Add analytics tracking here
                 console.log('CTA clicked:', this.textContent);
+                
+                // Add a nice click effect
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
             });
         });
+
+        // Add scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            // Create progress bar if it doesn't exist
+            let progressBar = document.querySelector('.scroll-progress');
+            if (!progressBar) {
+                progressBar = document.createElement('div');
+                progressBar.className = 'scroll-progress';
+                progressBar.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: ${scrollPercent}%;
+                    height: 4px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    z-index: 9999;
+                    transition: width 0.1s ease;
+                `;
+                document.body.appendChild(progressBar);
+            } else {
+                progressBar.style.width = scrollPercent + '%';
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            document.body.style.transform = 'translateY(0)';
+        });
+
+        // Initial setup
+        document.body.style.cssText = `
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        `;
     </script>
 </body>
 </html>

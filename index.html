@@ -837,6 +837,58 @@
                 height: 150px;
             }
         }
+        /* ===== QR BOUNCE EFFECT ===== */
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: qrBounce 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        @keyframes qrBounce {
+            0% { transform: scale(0.8); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            80% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        /* ===== CARD HOVER EFFECT ===== */
+        .contact-card, .benefit-card, .problem-card, .day-item {
+            transition: box-shadow 0.3s, transform 0.3s, border 0.3s;
+        }
+        .contact-card:hover, .benefit-card:hover, .problem-card:hover, .day-item:hover {
+            box-shadow: 0 8px 32px rgba(102,126,234,0.18), 0 1.5px 8px rgba(0,0,0,0.08);
+            transform: translateY(-8px) scale(1.03);
+            border: 1.5px solid #667eea;
+        }
+        /* ===== CTA BUTTON GLOW ===== */
+        .btn-primary {
+            position: relative;
+            z-index: 1;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; right: 0; bottom: 0;
+            border-radius: 50px;
+            box-shadow: 0 0 24px 8px #ffd93d66;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .btn-primary:hover::after {
+            opacity: 1;
+        }
+        /* ===== SECTION FADE-IN ===== */
+        .fade-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        .fade-section.visible {
+            opacity: 1;
+            transform: none;
+        }
     </style>
 </head>
 <body>
@@ -1345,6 +1397,51 @@
         </div>
     </footer>
 
+    <!-- Section Video Youtube -->
+    <section class="fade-section" id="video-section" style="padding: 5rem 0; background: #f8fafc;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Video Trải Nghiệm Khóa Học</h2>
+                <p class="section-subtitle">Xem thử các bài giảng và demo ứng dụng Python cho giáo viên</p>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+                <div style="flex: 1 1 350px; max-width: 500px;">
+                    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius: 20px; box-shadow: 0 8px 32px rgba(102,126,234,0.12);">
+                        <iframe src="https://www.youtube.com/embed/4p7Mv4u3z1w" title="Demo Python cho giáo viên" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+                <div style="flex: 1 1 350px; max-width: 500px;">
+                    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius: 20px; box-shadow: 0 8px 32px rgba(102,126,234,0.12);">
+                        <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" title="Giới thiệu Python for Teacher" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section Hình ảnh -->
+    <section class="fade-section" id="gallery-section" style="padding: 5rem 0; background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Hình Ảnh Thực Tế & Sản Phẩm</h2>
+                <p class="section-subtitle">Một số hình ảnh về khóa học, sản phẩm và hoạt động của giáo viên</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 8px 32px rgba(102,126,234,0.10);">
+                    <img src="anh tui.jpg" alt="Giáo viên Trần Quốc Quân" style="width:100%; display:block; object-fit:cover; height:220px;">
+                </div>
+                <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 8px 32px rgba(102,126,234,0.10);">
+                    <img src="PYTHON FROM ZERO/anh bia Classroom.png" alt="Ảnh lớp học Python" style="width:100%; display:block; object-fit:cover; height:220px;">
+                </div>
+                <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 8px 32px rgba(102,126,234,0.10);">
+                    <img src="PYTHON FROM ZERO/hinh_tui.jpg" alt="Học viên thực hành Python" style="width:100%; display:block; object-fit:cover; height:220px;">
+                </div>
+                <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 8px 32px rgba(102,126,234,0.10);">
+                    <img src="Day4/Physics Python Music.mp4" alt="Demo video sản phẩm Python" style="width:100%; display:block; object-fit:cover; height:220px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
         // Smooth scrolling for anchor links with highlight effect
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1405,6 +1502,21 @@
             observer.observe(el);
         });
 
+        // Section fade-in on scroll
+        document.querySelectorAll('.fade-section').forEach(section => {
+            section.classList.remove('visible');
+        });
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-section').forEach(section => {
+            fadeObserver.observe(section);
+        });
     </script>
 </body>
 </html>

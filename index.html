@@ -811,48 +811,87 @@
     </section>
 
     <!-- Teacher Info Section -->
-<section class="teacher-section">
-    <div class="teacher-content">
+<!-- Section giới thiệu giảng viên -->
+<section class="teacher-section" aria-labelledby="teacher-heading">
+    <div class="teacher-container">
+        
+        <!-- Thông tin cá nhân giảng viên -->
+        <aside class="teacher-profile">
+            <figure class="teacher-avatar">
+                <div class="teacher-avatar__image">
+                    <img 
+                        src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/hinh_tui.jpg" 
+                        alt="Ảnh đại diện của Thầy Trần Quốc Quân"
+                        class="teacher-avatar__img"
+                        loading="lazy"
+                    >
+                </div>
+                <figcaption class="teacher-avatar__info">
+                    <h3 class="teacher-avatar__name">Thầy Trần Quốc Quân</h3>
+                    <p class="teacher-avatar__title">Giáo viên Vật lí | Chuyên gia Python Education</p>
+                </figcaption>
+            </figure>
+        </aside>
 
-        <!-- ===== CỘT BÊN TRÁI (AVATAR & TÊN) ===== -->
-        <div class="teacher-avatar">
-            <div class="teacher-image">
-                <!-- LỖI #1 ĐÃ SỬA: Thêm dấu > vào cuối thẻ img -->
-                <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/hinh_tui.jpg">
-            </div>
-            <h3>Thầy Trần Quốc Quân</h3>
-            <p>Giáo viên Vật lí | Chuyên gia Python Education</p>
-        </div>
+        <!-- Thông tin chi tiết về giảng viên -->
+        <main class="teacher-details">
+            <header class="teacher-details__header">
+                <h2 id="teacher-heading" class="teacher-details__title">
+                    Thông tin giáo viên
+                </h2>
+            </header>
 
-        <!-- LỖI #2 ĐÃ SỬA: Xóa thẻ </div> thừa ở đây -->
-
-        <!-- ===== CỘT BÊN PHẢI (THÔNG TIN CHI TIẾT) ===== -->
-        <div class="teacher-info">
-            <h2>Giảng Viên & Người Hướng Dẫn</h2>
-            
-            <div class="teacher-credentials">
-                <h3>🎓 Trình Độ Chuyên Môn</h3>
-                <ul>
-                    <li>Giáo viên Vật lý THPT Tây Sơn - Bình Định</li>
-                    <li>20 năm kinh nghiệm giảng dạy & bồi dưỡng học sinh giỏi</li>
-                    <li>Chuyên gia Python ứng dụng trong giáo dục (STEM, AI, Tự động hóa)</li>
-                    <li>Đam mê nghiên cứu và phát triển các công cụ dạy học hiện đại</li>
+            <!-- Trình độ chuyên môn -->
+            <article class="teacher-credentials">
+                <h3 class="teacher-credentials__title">
+                    <span class="teacher-credentials__icon" aria-hidden="true">🎓</span>
+                    Trình Độ Chuyên Môn
+                </h3>
+                <ul class="teacher-credentials__list">
+                    <li class="teacher-credentials__item">
+                        Giáo viên Vật lí THPT Tây Sơn - Bình Định (cũ)
+                    </li>
+                    <li class="teacher-credentials__item">
+                        20 năm kinh nghiệm giảng dạy & bồi dưỡng học sinh giỏi
+                    </li>
+                    <li class="teacher-credentials__item">
+                        Chuyên gia Python ứng dụng trong giáo dục (STEM, AI, Tự động hóa)
+                    </li>
+                    <li class="teacher-credentials__item">
+                        Đam mê nghiên cứu và phát triển các công cụ dạy học hiện đại
+                    </li>
                 </ul>
-            </div>
-            
-            <div class="teacher-experience">
-                <h3>⭐ Thành Tựu: Tác giả phần mềm PMaker</h3>
-                <ul>
-                    <li>Tự động tạo hàng trăm đề thi, bài tập ngẫu nhiên trong vài giây.</li>
-                    <li>Vẽ đồ thị Vật lí (dao động, chuyển động...) với số liệu ngẫu nhiên.</li>
-                    <li>Tích hợp AI (API) để tạo câu hỏi trắc nghiệm, đúng/sai, trả lời ngắn.</li>
-                    <li>Trộn đề thi, xuất file Word và LaTeX siêu đẹp, chuyên nghiệp.</li>
-                    <li>Tích hợp thí nghiệm STEM (Arduino, Pico) vào dạy học dự án.</li>
-                    <li>Quản lý ngân hàng câu hỏi bằng phương pháp cơ sở dữ liệu hiện đại.</li>
-                </ul>
-            </div>
-        </div>
+            </article>
 
+            <!-- Thành tựu và kinh nghiệm -->
+            <article class="teacher-achievements">
+                <h3 class="teacher-achievements__title">
+                    <span class="teacher-achievements__icon" aria-hidden="true">⭐</span>
+                    Thành Tựu: Tác giả phần mềm PMaker
+                </h3>
+                <ul class="teacher-achievements__list">
+                    <li class="teacher-achievements__item">
+                        Tự động tạo hàng trăm đề thi, bài tập ngẫu nhiên trong vài giây.
+                    </li>
+                    <li class="teacher-achievements__item">
+                        Vẽ đồ thị Vật lí (dao động, chuyển động...) với số liệu ngẫu nhiên.
+                    </li>
+                    <li class="teacher-achievements__item">
+                        Tích hợp AI (API) để tạo câu hỏi trắc nghiệm, đúng/sai, trả lời ngắn.
+                    </li>
+                    <li class="teacher-achievements__item">
+                        Trộn đề thi, xuất file Word và LaTeX siêu đẹp, chuyên nghiệp.
+                    </li>
+                    <li class="teacher-achievements__item">
+                        Tích hợp thí nghiệm STEM (Arduino, Pico) vào dạy học dự án.
+                    </li>
+                    <li class="teacher-achievements__item">
+                        Quản lý ngân hàng câu hỏi bằng phương pháp cơ sở dữ liệu hiện đại.v.v.v
+                    </li>
+                </ul>
+            </article>
+        </main>
+        
     </div>
 </section>
 

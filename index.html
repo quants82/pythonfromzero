@@ -639,14 +639,15 @@
         }
         
         .footer-main {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 4rem;
-            align-items: start;
             margin-bottom: 3rem;
         }
         
         .contact-grid {
+            width: 100%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
@@ -1318,7 +1319,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="qr" class="qr-section" style="margin-top:2.5rem;">
+                    <div id="qr" class="qr-section">
                         <div class="qr-container">
                             <div class="qr-image">
                                 <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/QR_Group.jpg" 
@@ -1343,21 +1344,8 @@
             </div>
         </div>
     </footer>
-<!-- KẾT THÚC PHẦN ĐÃ SỬA -->
-    <script>
-        // Performance optimizations
-        const debounce = (func, wait) => {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        };
 
+    <script>
         // Smooth scrolling for anchor links with highlight effect
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1366,41 +1354,50 @@
                 const target = document.querySelector(targetId);
                 
                 if (target) {
+                    // Custom block alignment for the QR section
+                    let blockPosition = 'start';
+                    if (targetId === '#qr') {
+                        blockPosition = 'center'; // Center the QR code vertically in the viewport
+                    }
+
                     target.scrollIntoView({
                         behavior: 'smooth',
-                        block: 'start'
+                        block: blockPosition
                     });
                     
                     // Add highlight effect if scrolling to footer/contact
-                    if (targetId === '#contact') {
+                    if (targetId === '#contact' || targetId === '#qr') {
+                        const footer = document.querySelector('#contact');
+                        // Use a slight delay to allow the scroll to start
                         setTimeout(() => {
-                            target.classList.add('highlight');
+                            footer.classList.add('highlight');
+                            // Remove the highlight after the animation duration
                             setTimeout(() => {
-                                target.classList.remove('highlight');
-                            }, 2000);
-                        }, 800); // Wait for scroll to complete
+                                footer.classList.remove('highlight');
+                            }, 2000); // 2000ms matches the animation duration
+                        }, 700); // Adjust delay as needed for the scroll to feel smooth
                     }
                 }
             });
         });
 
-        // Intersection Observer for animations
+        // Intersection Observer for animations on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target); // Stop observing once animated
+                    observer.unobserve(entry.target); // Animate only once
                 }
             });
         }, observerOptions);
 
-        // Observe elements for animation
+        // Apply observer to elements that need animation
         document.querySelectorAll('.problem-card, .benefit-card, .day-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
@@ -1408,53 +1405,6 @@
             observer.observe(el);
         });
 
-        // Add click tracking for CTA buttons with enhanced analytics
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const buttonText = this.textContent.trim();
-                const targetHref = this.getAttribute('href');
-                
-                // Enhanced analytics tracking
-                console.log('CTA clicked:', {
-                    text: buttonText,
-                    target: targetHref,
-                    timestamp: new Date().toISOString(),
-                    section: this.closest('section')?.className || 'unknown'
-                });
-                
-                // Special tracking for registration buttons
-                if (buttonText.includes('ĐĂNG KÝ NGAY')) {
-                    console.log('Registration intent tracked');
-                    // Add Google Analytics or other tracking service here
-                    // gtag('event', 'click', { event_category: 'registration', event_label: 'cta_button' });
-                }
-            });
-        });
-
-        // Lazy loading for images
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-
-        // Add loading states for better UX
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
     </script>
 </body>
 </html>
-<!-- Link: https://quants82.github.io/pythonfromzero/ -->
-<!--Chay: start chrome landingpage.html -->

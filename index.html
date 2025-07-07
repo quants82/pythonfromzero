@@ -200,10 +200,6 @@
             transition: transform 0.3s ease;
         }
         
-        .problem-card:hover {
-            transform: translateY(-10px);
-        }
-        
         .problem-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
@@ -473,11 +469,6 @@
             transition: all 0.3s ease;
         }
         
-        .day-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-        
         .day-item::before {
             content: '';
             position: absolute;
@@ -617,6 +608,160 @@
             animation: pulse 2s infinite;
         }
         
+        /* ===== IMAGE SLIDER STYLES ===== */
+        .image-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15);
+        }
+        
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .slide-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .slide-description {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Navigation buttons */
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .slider-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .slider-nav.prev {
+            left: 20px;
+        }
+        
+        .slider-nav.next {
+            right: 20px;
+        }
+        
+        /* Dots indicator */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1.5rem;
+            background: white;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: #667eea;
+            transform: scale(1.2);
+        }
+        
+        .dot:hover {
+            background: #94a3b8;
+        }
+        
+        /* Thumbnails */
+        .slider-thumbnails {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            justify-content: center;
+            overflow-x: auto;
+        }
+        
+        .thumbnail {
+            flex-shrink: 0;
+            width: 80px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .thumbnail.active {
+            border-color: #667eea;
+            transform: scale(1.1);
+        }
+        
+        .thumbnail:hover {
+            transform: scale(1.05);
+            border-color: #94a3b8;
+        }
+        
         /* ===== FOOTER ===== */
         .footer {
             background: #1e293b;
@@ -690,6 +835,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            animation: qrBounce 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
         
         .qr-title {
@@ -772,79 +918,7 @@
             50% { transform: scale(1.05); }
         }
         
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .teacher-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .teacher-profile {
-                position: static;
-                order: -1;
-            }
-            
-            .teacher-info-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .solution-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .footer-main {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .days-timeline {
-                padding-left: 1rem;
-            }
-            
-            .day-item {
-                margin-left: 1rem;
-            }
-            
-            .day-item::before {
-                left: -1.5rem;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .teacher-avatar__image {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .qr-image {
-                width: 150px;
-                height: 150px;
-            }
-        }
         /* ===== QR BOUNCE EFFECT ===== */
-        .qr-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            animation: qrBounce 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-        }
         @keyframes qrBounce {
             0% { transform: scale(0.8); opacity: 0; }
             60% { transform: scale(1.1); opacity: 1; }
@@ -888,6 +962,105 @@
         .fade-section.visible {
             opacity: 1;
             transform: none;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .teacher-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .teacher-profile {
+                position: static;
+                order: -1;
+            }
+            
+            .teacher-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .solution-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-main {
+                gap: 2rem;
+            }
+            
+            .days-timeline {
+                padding-left: 1rem;
+            }
+            
+            .day-item {
+                margin-left: 1rem;
+            }
+            
+            .day-item::before {
+                left: -1.5rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide img {
+                height: 300px;
+            }
+            
+            .slider-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .slider-nav.prev {
+                left: 10px;
+            }
+            
+            .slider-nav.next {
+                right: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .teacher-avatar__image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .qr-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .slide img {
+                height: 250px;
+            }
+            
+            .slide-caption {
+                padding: 1rem;
+            }
+            
+            .slide-title {
+                font-size: 1.1rem;
+            }
+            
+            .slide-description {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -1348,34 +1521,85 @@
         <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
             <div style="flex: 1 1 350px; max-width: 500px;">
                 <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius: 20px; box-shadow: 0 8px 32px rgba(102,126,234,0.12);">
-                    <iframe src="https://www.youtube.com/embed/4p7Mv4u3z1w" title="Demo Python cho giáo viên" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    <iframe src="https://www.youtube.com/embed/-tCi662GKfA?si=7hHx2crnQtYaf91J" title="Demo Python cho giáo viên" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
                 </div>
             </div>
             <div style="flex: 1 1 350px; max-width: 500px;">
                 <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius: 20px; box-shadow: 0 8px 32px rgba(102,126,234,0.12);">
-                    <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" title="Giới thiệu Python for Teacher" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    <iframe src="https://www.youtube.com/embed/CiuhXruJrgw?si=PAzls10EOOe_SJht" title="Giới thiệu Python for Teacher" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Section Hình ảnh -->
+<!-- Section Hình ảnh với Image Slider -->
 <section class="fade-section" id="gallery-section" style="padding: 5rem 0; background: white;">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">Hình Ảnh Thực Tế & Sản Phẩm</h2>
             <p class="section-subtitle">Một số hình ảnh về khóa học, sản phẩm và hoạt động của giáo viên</p>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-            <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 8px 32px rgba(102,126,234,0.10);">
-                <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/PYTHON_FROM_ZERO/anh1.PNG";">
+        
+        <!-- Image Slider -->
+        <div class="image-slider" id="imageSlider">
+            <div class="slider-container">
+                <div class="slider-wrapper" id="sliderWrapper">
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/anh_tui.jpg" alt="Giáo viên Trần Quốc Quân">
+                        <div class="slide-caption">
+                            <div class="slide-title">Giáo viên Trần Quốc Quân</div>
+                            <div class="slide-description">20 năm kinh nghiệm giảng dạy và phát triển công cụ Python cho giáo dục</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/PYTHON_FROM_ZERO/anh_bia_Classroom.png" alt="Lớp học Python cho giáo viên">
+                        <div class="slide-caption">
+                            <div class="slide-title">Lớp học Python cho Giáo viên</div>
+                            <div class="slide-description">Môi trường học tập tương tác và thân thiện với giáo viên</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/PYTHON_FROM_ZERO/hinh_tui.jpg" alt="Thầy Quân trong buổi đào tạo">
+                        <div class="slide-caption">
+                            <div class="slide-title">Buổi Đào Tạo Thực Hành</div>
+                            <div class="slide-description">Hướng dẫn chi tiết và thực hành trực tiếp các kỹ năng Python</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/demo_python.jpg" alt="Demo sản phẩm Python">
+                        <div class="slide-caption">
+                            <div class="slide-title">Demo Sản Phẩm Python</div>
+                            <div class="slide-description">Các công cụ và ứng dụng Python thực tế cho giáo viên</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation buttons -->
+                <button class="slider-nav prev" id="prevBtn">‹</button>
+                <button class="slider-nav next" id="nextBtn">›</button>
             </div>
-            <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 8px 32px rgba(102,126,234,0.10);">
-                <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/PYTHON_FROM_ZERO/anh2.PNG";">
+            
+            <!-- Dots indicator -->
+            <div class="slider-dots" id="dotsContainer">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+                <span class="dot" data-slide="3"></span>
             </div>
-            <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 8px 32px rgba(102,126,234,0.10);">
-                <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/anh3.PNG";">
+            
+            <!-- Thumbnails -->
+            <div class="slider-thumbnails">
+                <div class="thumbnail active" data-slide="0">
+                    <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/anh1.PNG"">
+                </div>
+                <div class="thumbnail" data-slide="1">
+                    <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/PYTHON_FROM_ZERO/anh2.PNG"">
+                </div>
+                <div class="thumbnail" data-slide="2">
+                    <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/PYTHON_FROM_ZERO/anh3.PNG"">
+                </div>
+
             </div>
         </div>
     </div>
@@ -1408,7 +1632,7 @@
                         <div class="contact-icon">💬</div>
                         <h4 class="contact-title">Facebook</h4>
                         <div class="contact-info">
-                            facebook.com/quants82<br>
+                            <a href="https://facebook.com/quants82" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">facebook.com/quants82</a><br>
                             <small>Kết bạn để tìm thêm thông tin</small>
                         </div>
                     </div>
@@ -1429,7 +1653,7 @@
             
             <div class="footer-bottom">
                 <p class="footer-copyright">
-                    &copy; 2025 Python For Teacher. Bản quyền thuộc về Trần Quốc Quân - THPT Tây Sơn - Bình Định (cũ).
+                    © 2025 Python For Teacher. Bản quyền thuộc về Trần Quốc Quân - THPT Tây Sơn - Bình Định (cũ).
                 </p>
                 <p class="footer-note">
                     Khóa học được thiết kế dành riêng cho giáo viên Việt Nam dạy các môn Lí, Hóa, Sinh, Công nghệ, Địa lí.
@@ -1440,6 +1664,147 @@
 </footer>
 
 <script>
+    // Image Slider Functionality
+    class ImageSlider {
+        constructor(sliderId) {
+            this.slider = document.getElementById(sliderId);
+            this.wrapper = document.getElementById('sliderWrapper');
+            this.prevBtn = document.getElementById('prevBtn');
+            this.nextBtn = document.getElementById('nextBtn');
+            this.dotsContainer = document.getElementById('dotsContainer');
+            this.thumbnails = document.querySelectorAll('.thumbnail');
+            this.dots = document.querySelectorAll('.dot');
+            this.slides = document.querySelectorAll('.slide');
+            
+            this.currentSlide = 0;
+            this.totalSlides = this.slides.length;
+            this.autoPlayInterval = null;
+            this.autoPlayDelay = 5000; // 5 seconds
+            
+            this.init();
+        }
+        
+        init() {
+            this.bindEvents();
+            this.startAutoPlay();
+            this.addTouchSupport();
+        }
+        
+        bindEvents() {
+            // Navigation buttons
+            this.prevBtn.addEventListener('click', () => this.prevSlide());
+            this.nextBtn.addEventListener('click', () => this.nextSlide());
+            
+            // Dots navigation
+            this.dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => this.goToSlide(index));
+            });
+            
+            // Thumbnails navigation
+            this.thumbnails.forEach((thumb, index) => {
+                thumb.addEventListener('click', () => this.goToSlide(index));
+            });
+            
+            // Pause auto-play on hover
+            this.slider.addEventListener('mouseenter', () => this.stopAutoPlay());
+            this.slider.addEventListener('mouseleave', () => this.startAutoPlay());
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') this.prevSlide();
+                if (e.key === 'ArrowRight') this.nextSlide();
+            });
+        }
+        
+        addTouchSupport() {
+            let startX = 0;
+            let endX = 0;
+            
+            this.wrapper.addEventListener('touchstart', (e) => {
+                startX = e.changedTouches[0].screenX;
+            });
+            
+            this.wrapper.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].screenX;
+                this.handleSwipe(startX, endX);
+            });
+        }
+        
+        handleSwipe(startX, endX) {
+            const threshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    this.nextSlide();
+                } else {
+                    this.prevSlide();
+                }
+            }
+        }
+        
+        goToSlide(slideIndex) {
+            this.currentSlide = slideIndex;
+            this.updateSlider();
+            this.updateIndicators();
+            this.resetAutoPlay();
+        }
+        
+        nextSlide() {
+            this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+            this.updateSlider();
+            this.updateIndicators();
+            this.resetAutoPlay();
+        }
+        
+        prevSlide() {
+            this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+            this.updateSlider();
+            this.updateIndicators();
+            this.resetAutoPlay();
+        }
+        
+        updateSlider() {
+            const translateX = -this.currentSlide * 100;
+            this.wrapper.style.transform = `translateX(${translateX}%)`;
+        }
+        
+        updateIndicators() {
+            // Update dots
+            this.dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === this.currentSlide);
+            });
+            
+            // Update thumbnails
+            this.thumbnails.forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === this.currentSlide);
+            });
+        }
+        
+        startAutoPlay() {
+            this.autoPlayInterval = setInterval(() => {
+                this.nextSlide();
+            }, this.autoPlayDelay);
+        }
+        
+        stopAutoPlay() {
+            if (this.autoPlayInterval) {
+                clearInterval(this.autoPlayInterval);
+                this.autoPlayInterval = null;
+            }
+        }
+        
+        resetAutoPlay() {
+            this.stopAutoPlay();
+            this.startAutoPlay();
+        }
+    }
+    
+    // Initialize slider when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        new ImageSlider('imageSlider');
+    });
+
     // Smooth scrolling for anchor links with highlight effect
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -1517,5 +1882,3 @@
 </script>
 </body>
 </html>
-<!-- Link: https://quants82.github.io/pythonfromzero/ -->
-<!--Chay: start chrome landingpage.html -->

@@ -740,6 +740,19 @@
             font-size: 0.9rem;
         }
         
+        /* ===== SCROLL HIGHLIGHT EFFECT ===== */
+        .footer.highlight {
+            animation: highlightPulse 2s ease-in-out;
+        }
+        
+        @keyframes highlightPulse {
+            0% { background: #1e293b; }
+            25% { background: #334155; }
+            50% { background: #475569; }
+            75% { background: #334155; }
+            100% { background: #1e293b; }
+        }
+        
         /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
             from {
@@ -957,7 +970,7 @@
                 <main class="teacher-details">
                     <header class="teacher-details__header">
                         <h2 id="teacher-heading" class="teacher-details__title">
-                            Thông tin giáo viên
+                            Giảng Viên & Người Hướng Dẫn
                         </h2>
                     </header>
 
@@ -970,7 +983,7 @@
                             </h3>
                             <ul class="teacher-credentials__list">
                                 <li class="teacher-credentials__item">
-                                    Giáo viên Vật lí THPT Tây Sơn - Bình Định (cũ)
+                                    Giáo viên Vật lý THPT Tây Sơn - Bình Định
                                 </li>
                                 <li class="teacher-credentials__item">
                                     20 năm kinh nghiệm giảng dạy & bồi dưỡng học sinh giỏi
@@ -1244,7 +1257,7 @@
                 </div>
 
                 <div style="margin-top: 2rem;">
-                    <a href="#register" class="btn btn-primary" style="font-size: 1.3rem; padding: 1.5rem 4rem; margin-right: 1rem;">
+                    <a href="#contact" class="btn btn-primary" style="font-size: 1.3rem; padding: 1.5rem 4rem; margin-right: 1rem;">
                         🚀 ĐĂNG KÝ NGAY 
                     </a>
                     <a href="#contact" class="btn btn-secondary" style="font-size: 1.1rem; padding: 1.2rem 2rem;">
@@ -1262,7 +1275,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="contact" class="footer">
         <div class="container">
             <div class="footer-content">
                 <h3 class="footer-title">Liên Hệ Ngay Để Được Tư Vấn!</h3>
@@ -1337,16 +1350,28 @@
             };
         };
 
-        // Smooth scrolling for anchor links
+        // Smooth scrolling for anchor links with highlight effect
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    
+                    // Add highlight effect if scrolling to footer/contact
+                    if (targetId === '#contact') {
+                        setTimeout(() => {
+                            target.classList.add('highlight');
+                            setTimeout(() => {
+                                target.classList.remove('highlight');
+                            }, 2000);
+                        }, 800); // Wait for scroll to complete
+                    }
                 }
             });
         });
@@ -1375,11 +1400,26 @@
             observer.observe(el);
         });
 
-        // Add click tracking for CTA buttons
+        // Add click tracking for CTA buttons with enhanced analytics
         document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Add analytics tracking here
-                console.log('CTA clicked:', this.textContent.trim());
+            btn.addEventListener('click', function(e) {
+                const buttonText = this.textContent.trim();
+                const targetHref = this.getAttribute('href');
+                
+                // Enhanced analytics tracking
+                console.log('CTA clicked:', {
+                    text: buttonText,
+                    target: targetHref,
+                    timestamp: new Date().toISOString(),
+                    section: this.closest('section')?.className || 'unknown'
+                });
+                
+                // Special tracking for registration buttons
+                if (buttonText.includes('ĐĂNG KÝ NGAY')) {
+                    console.log('Registration intent tracked');
+                    // Add Google Analytics or other tracking service here
+                    // gtag('event', 'click', { event_category: 'registration', event_label: 'cta_button' });
+                }
             });
         });
 

@@ -640,8 +640,8 @@
         
         .footer-main {
             display: grid;
-            grid-template-columns: 1fr; /* Chỉ còn 1 cột */
-            gap: 2rem; /* Giảm khoảng cách nếu cần */
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
             align-items: start;
             margin-bottom: 3rem;
         }
@@ -688,6 +688,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
         
         .qr-title {
@@ -1260,7 +1261,7 @@
                 </div>
 
                 <div style="margin-top: 2rem;">
-                    <a href="#contact" class="btn btn-primary" style="font-size: 1.3rem; padding: 1.5rem 4rem; margin-right: 1rem;">
+                    <a href="#qr" class="btn btn-primary" style="font-size: 1.3rem; padding: 1.5rem 4rem; margin-right: 1rem;">
                         🚀 ĐĂNG KÝ NGAY 
                     </a>
                     <a href="#contact" class="btn btn-secondary" style="font-size: 1.1rem; padding: 1.2rem 2rem;">
@@ -1285,12 +1286,12 @@
     </section>
 
 <!-- Footer -->
+
     <footer id="contact" class="footer">
         <div class="container">
             <div class="footer-content">
                 <h3 class="footer-title">Liên Hệ Ngay Để Được Tư Vấn!</h3>
                 
-                <!-- Khối này bây giờ chỉ chứa 3 thông tin liên hệ -->
                 <div class="footer-main">
                     <div class="contact-grid">
                         <div class="contact-card">
@@ -1319,25 +1320,24 @@
                             </div>
                         </div>
                     </div>
-                </div> <!-- Kết thúc .footer-main -->
-                
-                <!-- Khối QR đã được di chuyển ra ngoài, nằm thành một hàng riêng -->
-                <div class="qr-section">
-                    <div class="qr-container">
-                        <div class="qr-image">
-                            <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/QR_Group.jpg" 
-                                 alt="QR Code Group Zalo">
-                        </div>
-                        <div class="qr-text">
-                            Quét để tham gia nhóm Zalo<br>
-                            <strong>Python For Teacher</strong>
+                    
+                    <div id="qr" class="qr-section">
+                        <div class="qr-container">
+                            <div class="qr-image">
+                                <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/QR_Group.jpg" 
+                                     alt="QR Code Group Zalo">
+                            </div>
+                            <div class="qr-text">
+                                Quét để tham gia nhóm Zalo<br>
+                                <strong>Python For Teacher</strong>
+                            </div>
                         </div>
                     </div>
                 </div>
-    
+                
                 <div class="footer-bottom">
                     <p class="footer-copyright">
-                        © 2025 Python For Teacher. Bản quyền thuộc về Trần Quốc Quân - THPT Tây Sơn - Bình Định (cũ).
+                        &copy; 2025 Python For Teacher. Bản quyền thuộc về Trần Quốc Quân - THPT Tây Sơn - Bình Định (cũ).
                     </p>
                     <p class="footer-note">
                         Khóa học được thiết kế dành riêng cho giáo viên Việt Nam dạy các môn Lí, Hóa, Sinh, Công nghệ, Địa lí.
@@ -1346,7 +1346,7 @@
             </div>
         </div>
     </footer>
-    <!-- KẾT THÚC PHẦN ĐÃ SỬA -->
+<!-- KẾT THÚC PHẦN ĐÃ SỬA -->
     <script>
         // Performance optimizations
         const debounce = (func, wait) => {
@@ -1459,3 +1459,4 @@
     </script>
 </body>
 </html>
+<!-- Link: https://quants82.github.io/pythonfromzero/ -->

@@ -1284,67 +1284,56 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <h3 class="footer-title">Liên Hệ Ngay Để Được Tư Vấn!</h3>
-                
-                <div class="footer-main">
-                    <div class="contact-grid">
-                        <div class="contact-card">
-                            <div class="contact-icon">📞</div>
-                            <h4 class="contact-title">Zalo</h4>
-                            <div class="contact-info">
-                                0978531191<br>
-                                <small>(8h - 22h hằng ngày)</small>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-card">
-                            <div class="contact-icon">✉️</div>
-                            <h4 class="contact-title">Email</h4>
-                            <div class="contact-info">
-                                quants82@gmail.com
-                            </div>
-                        </div>
-                        
-                        <div class="contact-card">
-                            <div class="contact-icon">💬</div>
-                            <h4 class="contact-title">Facebook</h4>
-                            <div class="contact-info">
-                                facebook.com/quants82<br>
-                                <small>Kết bạn để tìm thêm thông tin</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="qr-section">
-                        <div class="qr-container">
-                            <div class="qr-image">
-                                <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/QR_Group.jpg" 
-                                     alt="QR Code Group Zalo">
-                            </div>
-                            <div class="qr-text">
-                                Quét để tham gia nhóm Zalo<br>
-                                <strong>Python For Teacher</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p class="footer-copyright">
-                        &copy; 2025 Python For Teacher. Bản quyền thuộc về Trần Quốc Quân - THPT Tây Sơn - Bình Định (cũ).
-                    </p>
-                    <p class="footer-note">
-                        Khóa học được thiết kế dành riêng cho giáo viên Việt Nam dạy các môn Lí, Hóa, Sinh, Công nghệ, Địa lí.
-                    </p>
-                </div>
+<!-- Footer -->
+
+<!-- Hàng 1: Chỉ chứa thông tin Group Zalo -->
+<div class="footer-row-zalo">
+    <div class="qr-section-centered">
+        <div class="qr-container">
+            <div class="qr-image">
+                <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/QR_Group.jpg" 
+                     alt="QR Code Group Zalo">
+            </div>
+            <div class="qr-text">
+                Quét mã để tham gia ngay nhóm Zalo<br>
+                <strong>Python For Teacher</strong>
             </div>
         </div>
-    </footer>
+    </div>
+</div>
 
+<!-- Hàng 2: Chứa 3 thông tin liên hệ còn lại -->
+<div class="footer-row-contacts">
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h4 class="contact-title">Zalo Cá Nhân</h4>
+            <div class="contact-info">
+                0978531191<br>
+                <small>(Hỗ trợ 8h - 22h hằng ngày)</small>
+            </div>
+        </div>
+        
+        <div class="contact-card">
+            <div class="contact-icon">✉️</div>
+            <h4 class="contact-title">Email</h4>
+            <div class="contact-info">
+                quants82@gmail.com
+            </div>
+        </div>
+        
+        <div class="contact-card">
+            <div class="contact-icon">💬</div>
+            <h4 class="contact-title">Facebook</h4>
+            <div class="contact-info">
+                facebook.com/quants82<br>
+                <small>Kết bạn để trao đổi thêm</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- KẾT THÚC PHẦN ĐÃ SỬA -->
     <script>
         // Performance optimizations
         const debounce = (func, wait) => {

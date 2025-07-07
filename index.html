@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Khóa học Python tại Việt Nam được thiết kế riêng cho giáo viên, ưu tiên thầy, cô dạy các môn Lí, Hóa, Sinh, Địa, Công nghệ. Tự động hóa công việc giảng dạy trong 21 ngày.">
+    <meta name="description" content="Khóa học Python đầu tiên tại Việt Nam được thiết kế riêng cho giáo viên. Tự động hóa công việc giảng dạy trong 21 ngày.">
     <meta name="keywords" content="Python, giáo viên, khóa học, lập trình, giáo dục, automation">
-    <title>Python cho Giáo viên - Nâng tầm bản thân trong 21 ngày</title>
+    <title>Python cho Giáo viên - Thay đổi cách dạy học trong 21 ngày</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -639,15 +639,14 @@
         }
         
         .footer-main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
             gap: 4rem;
+            align-items: start;
             margin-bottom: 3rem;
         }
         
         .contact-grid {
-            width: 100%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
@@ -1214,12 +1213,12 @@
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <div class="benefit-icon">⚡</div>
-                    <h3 class="benefit-title">Tiết Kiệm 90% Thời Gian</h3>
+                    <h3 class="benefit-title">Tiết Kiệm 70% Thời Gian</h3>
                     <p>Các công việc lặp đi lặp lại</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">🎯</div>
-                    <h3 class="benefit-title">100% Code mẫu thực tế, Làm trước, hiểu sau</h3>
+                    <h3 class="benefit-title">100% Thực Tế</h3>
                     <p>Bắt kịp xu hướng công nghệ</p>
                 </div>
                 <div class="benefit-card">
@@ -1234,7 +1233,7 @@
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">💰</div>
-                    <h3 class="benefit-title">Mở ra cơ hội mới nếu tiếp tục học hỏi và nâng cấp</h3>
+                    <h3 class="benefit-title">Mở ra cơ hội mới</h3>
                     <p>Mở ra cơ hội để tìm thêm nguồn thu nhập.</p>
                 </div>
                 <div class="benefit-card">
@@ -1257,7 +1256,7 @@
                 <p>Hãy học khi còn có thể để làm chủ công nghệ!</p>
                 
                 <div class="price-highlight">
-                    <div class="price-original">Giá gốc: 789,000đ</div>
+                    <div class="price-original">Giá gốc: 999,000đ</div>
                     <div class="price-sale">Chỉ còn: 000,000đ</div>
                 </div>
 
@@ -1319,7 +1318,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="qr" class="qr-section">
+                    <div id="qr" class="qr-section" style="margin-top:2.5rem;">
                         <div class="qr-container">
                             <div class="qr-image">
                                 <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/QR_Group.jpg" 
@@ -1344,8 +1343,21 @@
             </div>
         </div>
     </footer>
-
+<!-- KẾT THÚC PHẦN ĐÃ SỬA -->
     <script>
+        // Performance optimizations
+        const debounce = (func, wait) => {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        };
+
         // Smooth scrolling for anchor links with highlight effect
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1354,50 +1366,41 @@
                 const target = document.querySelector(targetId);
                 
                 if (target) {
-                    // Custom block alignment for the QR section
-                    let blockPosition = 'start';
-                    if (targetId === '#qr') {
-                        blockPosition = 'center'; // Center the QR code vertically in the viewport
-                    }
-
                     target.scrollIntoView({
                         behavior: 'smooth',
-                        block: blockPosition
+                        block: 'start'
                     });
                     
                     // Add highlight effect if scrolling to footer/contact
-                    if (targetId === '#contact' || targetId === '#qr') {
-                        const footer = document.querySelector('#contact');
-                        // Use a slight delay to allow the scroll to start
+                    if (targetId === '#contact') {
                         setTimeout(() => {
-                            footer.classList.add('highlight');
-                            // Remove the highlight after the animation duration
+                            target.classList.add('highlight');
                             setTimeout(() => {
-                                footer.classList.remove('highlight');
-                            }, 2000); // 2000ms matches the animation duration
-                        }, 700); // Adjust delay as needed for the scroll to feel smooth
+                                target.classList.remove('highlight');
+                            }, 2000);
+                        }, 800); // Wait for scroll to complete
                     }
                 }
             });
         });
 
-        // Intersection Observer for animations on scroll
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target); // Animate only once
+                    observer.unobserve(entry.target); // Stop observing once animated
                 }
             });
         }, observerOptions);
 
-        // Apply observer to elements that need animation
+        // Observe elements for animation
         document.querySelectorAll('.problem-card, .benefit-card, .day-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
@@ -1405,6 +1408,53 @@
             observer.observe(el);
         });
 
+        // Add click tracking for CTA buttons with enhanced analytics
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const buttonText = this.textContent.trim();
+                const targetHref = this.getAttribute('href');
+                
+                // Enhanced analytics tracking
+                console.log('CTA clicked:', {
+                    text: buttonText,
+                    target: targetHref,
+                    timestamp: new Date().toISOString(),
+                    section: this.closest('section')?.className || 'unknown'
+                });
+                
+                // Special tracking for registration buttons
+                if (buttonText.includes('ĐĂNG KÝ NGAY')) {
+                    console.log('Registration intent tracked');
+                    // Add Google Analytics or other tracking service here
+                    // gtag('event', 'click', { event_category: 'registration', event_label: 'cta_button' });
+                }
+            });
+        });
+
+        // Lazy loading for images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Add loading states for better UX
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
     </script>
 </body>
 </html>
+<!-- Link: https://quants82.github.io/pythonfromzero/ -->
+<!--Chay: start chrome landingpage.html -->

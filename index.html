@@ -640,8 +640,8 @@
         
         .footer-main {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr; /* Chỉ còn 1 cột */
+            gap: 2rem; /* Giảm khoảng cách nếu cần */
             align-items: start;
             margin-bottom: 3rem;
         }
@@ -1285,12 +1285,12 @@
     </section>
 
 <!-- Footer -->
-
     <footer id="contact" class="footer">
         <div class="container">
             <div class="footer-content">
                 <h3 class="footer-title">Liên Hệ Ngay Để Được Tư Vấn!</h3>
                 
+                <!-- Khối này bây giờ chỉ chứa 3 thông tin liên hệ -->
                 <div class="footer-main">
                     <div class="contact-grid">
                         <div class="contact-card">
@@ -1319,24 +1319,25 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="qr-section">
-                        <div class="qr-container">
-                            <div class="qr-image">
-                                <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/QR_Group.jpg" 
-                                     alt="QR Code Group Zalo">
-                            </div>
-                            <div class="qr-text">
-                                Quét để tham gia nhóm Zalo<br>
-                                <strong>Python For Teacher</strong>
-                            </div>
+                </div> <!-- Kết thúc .footer-main -->
+                
+                <!-- Khối QR đã được di chuyển ra ngoài, nằm thành một hàng riêng -->
+                <div class="qr-section">
+                    <div class="qr-container">
+                        <div class="qr-image">
+                            <img src="https://raw.githubusercontent.com/quants82/pythonfromzero/main/QR_Group.jpg" 
+                                 alt="QR Code Group Zalo">
+                        </div>
+                        <div class="qr-text">
+                            Quét để tham gia nhóm Zalo<br>
+                            <strong>Python For Teacher</strong>
                         </div>
                     </div>
                 </div>
-                
+    
                 <div class="footer-bottom">
                     <p class="footer-copyright">
-                        &copy; 2025 Python For Teacher. Bản quyền thuộc về Trần Quốc Quân - THPT Tây Sơn - Bình Định (cũ).
+                        © 2025 Python For Teacher. Bản quyền thuộc về Trần Quốc Quân - THPT Tây Sơn - Bình Định (cũ).
                     </p>
                     <p class="footer-note">
                         Khóa học được thiết kế dành riêng cho giáo viên Việt Nam dạy các môn Lí, Hóa, Sinh, Công nghệ, Địa lí.
@@ -1345,7 +1346,7 @@
             </div>
         </div>
     </footer>
-<!-- KẾT THÚC PHẦN ĐÃ SỬA -->
+    <!-- KẾT THÚC PHẦN ĐÃ SỬA -->
     <script>
         // Performance optimizations
         const debounce = (func, wait) => {
